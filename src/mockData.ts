@@ -1,3 +1,5 @@
+import { Pokemon } from "./interfaces/Pokemon";
+
 export default {
   "1": {
     name: "bulbasaur",
@@ -146,3 +148,8 @@ export default {
     },
   },
 };
+
+export interface Mockdata {
+  key: string;
+  pokemon: Pokemon;
+}
