@@ -12,7 +12,7 @@ interface Species {
   name: string;
   url: string;
 }
-interface Slot {
+export interface Slot {
   slot: number;
   type: {
     name: string;

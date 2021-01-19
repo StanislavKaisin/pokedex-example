@@ -9,15 +9,10 @@ import {
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-// import mockData from "../mockData";
-import { PokemonCard } from "./PokemonCard";
+
+import { PokemonCard } from "../components/PokemonCard";
 const mockData: { [index: string]: any } = require("../mockData").default;
 
-// interface PokedexProps extends RouteComponentProps<any> {
-//   id: string;
-// }
-
-// props: PokedexProps
 const useStyles = makeStyles({
   pocedexContainer: {
     paddingTop: "20px",
@@ -26,12 +21,9 @@ const useStyles = makeStyles({
   },
 });
 
-export const Pokedex = () => {
-  // const mockData: { [index: string]: any } = mockData;
+export const Pokedex = (props: RouteComponentProps) => {
   const classes = useStyles();
   const [pokemonData, setpokemonData] = useState(mockData);
-  // const [pokemonData, setpokemonData] = useState(undefined);
-  // console.log(mockData);
   const getPockemonCard = (pokemonId: string) => {
     return (
       <Grid item xs={12} sm={4} key={pokemonId}>
@@ -41,6 +33,7 @@ export const Pokedex = () => {
       </Grid>
     );
   };
+
   return (
     <>
       <AppBar position="static">
@@ -49,15 +42,8 @@ export const Pokedex = () => {
       {pokemonData ? (
         <Grid container spacing={2} className={classes.pocedexContainer}>
           {Object.keys(pokemonData).map((pokemonId: string) => {
-            // console.log("pokemonData=", pokemonData);
-            // console.log(
-            //   "pokemonData[`${pokemonId}`]=",
-            //   pokemonData[`${pokemonId}`]
-            // );
-            // console.log("Object.keys(pokemonData)=", Object.keys(pokemonData));
             const pokemon = pokemonData[`${pokemonId}`];
             return <PokemonCard {...pokemon} key={pokemon.id} />;
-            // return getPockemonCard(pokemonId);
           })}
         </Grid>
       ) : (
