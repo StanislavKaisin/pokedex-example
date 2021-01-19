@@ -29,7 +29,9 @@ export const Pokemon = (props: PokemonProps) => {
 
   const { params } = match;
   const { pokemonId } = params;
-  const [pokemon, setpokemon] = useState(mockData[`${pokemonId}`]);
+  // const [pokemon, setpokemon] = useState(mockData[`${pokemonId}`]);
+  const [pokemon, setpokemon] = useState({});
+
   const generatePokemonJSX = (): ReactElement => {
     const { name, id, species, height, weight, types, sprites } = pokemon;
     const fullImageUrle = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
@@ -53,7 +55,6 @@ export const Pokemon = (props: PokemonProps) => {
           <Typography>Weight: {weight}</Typography>
           <Typography variant="h6">Types: </Typography>
           {types.map((typeInfo: Slot) => {
-            console.log(typeInfo);
             const { type } = typeInfo;
             const { name } = type;
             return <Typography key={name}>{`${name}`}</Typography>;
