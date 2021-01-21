@@ -9,9 +9,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { toFirstCharUpperCase } from "../heplers/toFirstCharUpperCase";
-import { Pokemon } from "../interfaces/Pokemon";
+import { IPokemon } from "../interfaces/Pokemon";
 
-interface PokemonCardProps extends Pokemon {}
+export interface PokemonCardProps {
+  id: string | number;
+  name: string;
+  sprite: string;
+}
 
 const useStyles = makeStyles({
   card: {
@@ -30,8 +34,8 @@ const useStyles = makeStyles({
 export const PokemonCard = (props: PokemonCardProps) => {
   const history = useHistory();
   const classes = useStyles();
-  const { id, name } = props;
-  const sprite = props.sprites.front_default ? props.sprites.front_default : "";
+  const { id, name, sprite } = props;
+
   return (
     <Grid item xs={12} sm={4} key={id}>
       <Card

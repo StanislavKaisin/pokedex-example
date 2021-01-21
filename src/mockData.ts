@@ -1,4 +1,4 @@
-import { Pokemon } from "./interfaces/Pokemon";
+import { IPokemon } from "./interfaces/Pokemon";
 
 export default {
   "1": {
@@ -151,5 +151,5 @@ export default {
 
 export interface Mockdata {
   key: string;
-  pokemon: Pokemon;
+  pokemon: IPokemon;
 }

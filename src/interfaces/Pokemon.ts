@@ -1,4 +1,4 @@
-export interface Pokemon {
+export interface IPokemon {
   name: string;
   id: number;
   species: Species;
@@ -20,56 +20,12 @@ export interface Slot {
   };
 }
 interface Sprites {
-  back_default?: string | null;
-  back_female?: string | null;
-  back_shiny?: string | null;
-  back_shiny_female?: string | null;
-  front_default?: string | null;
-  front_female?: string | null;
-  front_shiny?: string | null;
-  front_shiny_female?: string | null;
+  back_default: string;
+  back_female: string;
+  back_shiny: string;
+  back_shiny_female: string;
+  front_default: string;
+  front_female: string;
+  front_shiny: string;
+  front_shiny_female: string;
 }
-
-/*
- name: "squirtle",
-    id: 7,
-    species: {
-      name: "squirtle",
-      url: "https://pokeapi.co/api/v2/pokemon-species/7/",
-    },
-    height: 5,
-    types: [
-      {
-        slot: 1,
-        type: {
-          name: "water",
-          url: "https://pokeapi.co/api/v2/type/11/",
-        },
-      },
-    ],
-    weight: 90,
-    sprites: {
-      back_default:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png",
-
-      back_female: null,
-      
-      back_shiny:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/7.png",
-
-      back_shiny_female: null,
-
-      front_default:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-
-      front_female: null,
-
-      front_shiny:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/7.png",
-
-      front_shiny_female: null,
-    },
-  },
-  */
-
-// npm install react-router-dom --save @types/react-router-dom
