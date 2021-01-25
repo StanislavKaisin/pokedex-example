@@ -1,25 +1,44 @@
-import { AppBar, CircularProgress, Grid, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  CircularProgress,
+  Grid,
+  TextField,
+  Toolbar,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { fade, makeStyles } from "@material-ui/core/styles";
 
 import { PokemonCard, PokemonCardProps } from "../components/PokemonCard";
 import axios from "axios";
+import { Search } from "@material-ui/icons";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   pocedexContainer: {
     paddingTop: "20px",
     paddingLeft: "50px",
     paddingRight: "50px",
+    width: "100%",
+    margin: 0,
   },
-});
+  searchContainer: {
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+  },
+  searchIcon: {
+    alignSelf: "flex-end",
+    marginBotoom: "5px",
+  },
+}));
 
 export const Pokedex: React.FC = (props) => {
   const classes = useStyles();
-  // const [pokemonData, setpokemonData] = useState(mockData);
   const [pokemonData, setpokemonData] = useState<{
     [index: string]: PokemonCardProps;
   }>({});
+  const [filter, setfilter] = useState("");
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setfilter(e.target.value);
+  };
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon?limit=807`)
@@ -43,17 +62,33 @@ export const Pokedex: React.FC = (props) => {
   return (
     <>
       <AppBar position="static">
-        <Toolbar></Toolbar>
+        <Toolbar>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="baseline"
+          >
+            <Search className={classes.searchIcon} />
+            <TextField
+              label="Pokemon"
+              onChange={handleSearchChange}
+              className={classes.searchContainer}
+            />
+          </Grid>
+        </Toolbar>
       </AppBar>
       {pokemonData ? (
-        <Grid container spacing={2} className={classes.pocedexContainer}>
+        <Grid container spacing={1} className={classes.pocedexContainer}>
           {Object.keys(pokemonData).map((pokemonId: string) => {
-            const pokemon = pokemonData[`${pokemonId}`];
-            return (
-              <div key={pokemonId}>
-                <PokemonCard {...pokemon} />
-              </div>
-            );
+            if (pokemonData[pokemonId].name.includes(filter)) {
+              const pokemon = pokemonData[`${pokemonId}`];
+              return (
+                <React.Fragment key={pokemonId}>
+                  <PokemonCard {...pokemon} />
+                </React.Fragment>
+              );
+            }
           })}
         </Grid>
       ) : (

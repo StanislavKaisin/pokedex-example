@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { toFirstCharUpperCase } from "../heplers/toFirstCharUpperCase";
-import { IPokemon } from "../interfaces/Pokemon";
 
 export interface PokemonCardProps {
   id: string | number;
@@ -37,7 +36,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
   const { id, name, sprite } = props;
 
   return (
-    <Grid item xs={12} sm={4} key={id}>
+    <Grid item xs={12} sm={4} md={2} key={id}>
       <Card
         className={classes.card}
         onClick={(): void => {
